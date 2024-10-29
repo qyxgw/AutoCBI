@@ -1,0 +1,217 @@
+Functionality: Handles dead code elimination (DCE) in SSA form in GCC. It includes functions for removing unused variables and unreachable code, streamlining the generated code and improving performance.
+tree-ssa-dom.cc
+Functionality: Implements dominator-based optimizations in SSA form in GCC. It includes functions for analyzing and optimizing dominator relationships, which are crucial for various optimizations.
+tree-ssa-dse.cc
+Functionality: Handles dead store elimination (DSE) in SSA form in GCC. It includes functions for removing stores that are not read by any subsequent instruction, reducing memory operations and improving performance.
+tree-ssa-forwprop.cc
+Functionality: Implements forward propagation in SSA form in GCC. It includes functions for propagating values forward through the control flow graph, optimizing variable usage and improving code efficiency.
+tree-ssa-ifcombine.cc
+Functionality: Handles if-combine optimizations in SSA form in GCC. It includes functions for combining conditional branches to reduce branching, improving control flow and execution efficiency.
+tree-ssa-live.cc
+Functionality: Manages liveness analysis in SSA form in GCC. It includes functions for determining the liveness of variables at different points in the control flow graph, aiding in various optimizations.
+tree-ssa-loop-ch.cc
+Functionality: Implements loop header copying in SSA form in GCC. It includes functions for duplicating loop headers to facilitate loop optimizations and transformations.
+tree-ssa-loop-im.cc
+Functionality: Handles loop invariant motion (LIM) in SSA form in GCC. It includes functions for moving invariant computations out of loops, reducing redundant calculations and improving performance.
+tree-ssa-loop-ivcanon.cc
+Functionality: Implements induction variable canonicalization in SSA form in GCC. It ensures induction variables are in a standard form, facilitating optimizations and transformations.
+tree-ssa-loop-ivopts.cc
+Functionality: Handles induction variable optimizations in SSA form in GCC. It includes functions for transforming and optimizing induction variables in loops, improving loop performance.
+tree-ssa-loop-manip.cc
+Functionality: Provides utilities for manipulating loops in SSA form in GCC. It includes functions for creating, modifying, and analyzing loops, aiding in loop optimizations.
+tree-ssa-loop-niter.cc
+Functionality: Analyzes and transforms loop exit conditions in SSA form in GCC. It includes functions for determining the number of iterations a loop will execute, aiding in loop optimizations.
+tree-ssa-loop-prefetch.cc
+Functionality: Implements loop prefetching optimizations in SSA form in GCC. It includes functions for inserting prefetch instructions to improve memory access patterns and performance.
+tree-ssa-loop-split.cc
+Functionality: Handles loop splitting transformations in SSA form in GCC. It includes functions for dividing loops into smaller loops, improving performance and parallelism.
+tree-ssa-loop-unswitch.cc
+Functionality: Implements loop unswitching optimizations in SSA form in GCC. It moves invariant conditionals outside of loops, reducing unnecessary evaluations and improving performance.
+tree-ssa-loop.cc
+Functionality: Manages general loop optimizations in SSA form in GCC. It includes functions for analyzing and transforming loops to improve performance and efficiency.
+tree-ssa-math-opts.cc
+Functionality: Implements mathematical optimizations in SSA form in GCC. It includes functions for simplifying and optimizing mathematical expressions, improving performance and reducing computation overhead.
+tree-ssa-operands.cc
+Functionality: Handles operand management in SSA form in GCC. It includes functions for creating, modifying, and analyzing SSA operands, aiding in various optimizations and transformations.
+tree-ssa-phiopt.cc
+Functionality: Implements Phi optimization in SSA form in GCC. It includes functions for optimizing Phi nodes to reduce unnecessary variable copies and improve control flow efficiency.
+tree-ssa-phiprop.cc
+Functionality: Handles Phi propagation in SSA form in GCC. It includes functions for propagating values through Phi nodes, optimizing the control flow graph and improving performance.
+tree-ssa-pre.cc
+Functionality: Implements partial redundancy elimination (PRE) in SSA form in GCC. It includes functions for eliminating partially redundant computations, improving code efficiency and performance.
+tree-ssa-propagate.cc
+Functionality: Handles value propagation in SSA form in GCC. It includes functions for propagating values through the control flow graph, optimizing variable usage and improving performance.
+tree-ssa-reassoc.cc
+Functionality: Implements reassociation optimizations in SSA form in GCC. It includes functions for reordering associative operations to improve performance and reduce computation overhead.
+tree-ssa-sccvn.cc
+Functionality: Handles strongly connected components value numbering (SCCVN) in SSA form in GCC. It includes functions for optimizing expressions based on value numbering, improving code efficiency and performance.
+tree-ssa-scopedtables.cc
+Functionality: Manages scoped tables in SSA form in GCC. It includes functions for handling scoped variable declarations and lookups, aiding in various optimizations and transformations.
+tree-ssa-sink.cc
+Functionality: Implements sinking optimizations in SSA form in GCC. It includes functions for moving computations closer to their uses, improving performance and reducing computation overhead.
+tree-ssa-strlen.cc
+Functionality: Handles string length optimizations in SSA form in GCC. It includes functions for optimizing computations related to string lengths, improving performance by reducing redundant calculations and ensuring efficient handling of string operations.
+tree-ssa-structalias.cc
+Functionality: Implements struct alias analysis in SSA form in GCC. It includes functions for analyzing and optimizing aliasing relationships between struct fields, aiding in various memory and performance optimizations.
+tree-ssa-tail-merge.cc
+Functionality: Handles tail merging optimizations in SSA form in GCC. It includes functions for merging identical code sequences at the end of control flow paths, reducing code size and improving performance.
+tree-ssa-ter.cc
+Functionality: Implements temporary expression removal (TER) in SSA form in GCC. It includes functions for eliminating unnecessary temporary variables, streamlining the generated code and improving performance.
+tree-ssa-threadbackward.cc
+Functionality: Handles backward threading optimizations in SSA form in GCC. It includes functions for optimizing control flow by threading branches backward, improving code efficiency and reducing branching.
+tree-ssa-threadedge.cc
+Functionality: Implements edge threading optimizations in SSA form in GCC. It includes functions for optimizing control flow by threading edges in the control flow graph, improving performance and reducing branching.
+tree-ssa-threadupdate.cc
+Functionality: Handles control flow graph updates in SSA form in GCC. It includes functions for updating the control flow graph after optimizations, ensuring the consistency and correctness of the transformed code.
+tree-ssa-uncprop.cc
+Functionality: Implements unreachable code propagation in SSA form in GCC. It includes functions for removing unreachable code based on control flow analysis, improving code efficiency and performance.
+tree-ssa-uninit.cc
+Functionality: Handles uninitialized variable analysis in SSA form in GCC. It includes functions for detecting and reporting uninitialized variables, aiding in debugging and ensuring code correctness.
+tree-ssa.cc
+Functionality: Manages general SSA form optimizations in GCC. It includes functions for creating, modifying, and analyzing SSA form, providing a foundation for various optimizations and transformations.
+tree-ssanames.cc
+Functionality: Manages SSA name handling in GCC. It includes functions for creating, modifying, and querying SSA names, ensuring efficient and correct use of SSA variables in optimizations.
+tree-stdarg.cc
+Functionality: Handles variable argument lists in GCC. It includes functions for managing stdarg variables in tree representations, ensuring efficient and correct handling of variable argument functions.
+tree-streamer-in.cc
+Functionality: Implements input streaming for tree representations in GCC. It includes functions for reading serialized tree data, facilitating the loading and processing of intermediate representations.
+tree-streamer-out.cc
+Functionality: Handles output streaming for tree representations in GCC. It includes functions for writing serialized tree data, enabling the saving and transferring of intermediate representations.
+tree-streamer.cc
+Functionality: Manages general streaming operations for tree representations in GCC. It includes functions for serialization and deserialization, supporting the efficient handling of tree data.
+tree-switch-conversion.cc
+Functionality: Implements switch statement conversion in GCC. It includes functions for optimizing switch statements by transforming them into more efficient forms, improving code performance and reducing branching.
+tree-tailcall.cc
+Functionality: Handles tail call optimizations in GCC. It includes functions for transforming function calls into tail calls, reducing call overhead and improving performance.
+tree-vect-data-refs.cc
+Functionality: Manages data reference analysis for vectorization in GCC. It includes functions for analyzing and optimizing data accesses within loops, facilitating vectorization and improving performance.
+tree-vect-generic.cc
+Functionality: Implements generic vectorization utilities in GCC. It includes functions for handling common vectorization tasks, providing a foundation for various vectorization optimizations.
+tree-vect-loop-manip.cc
+Functionality: Provides utilities for manipulating loops for vectorization in GCC. It includes functions for transforming and optimizing loops to enable efficient vectorization.
+tree-vect-loop.cc
+Functionality: Manages loop vectorization in GCC. It includes functions for analyzing and transforming loops to execute in parallel using SIMD instructions, improving performance.
+tree-vect-patterns.cc
+Functionality: Implements pattern-based vectorization in GCC. It includes functions for recognizing and optimizing common vectorization patterns, improving the efficiency of generated code.
+tree-vect-slp-patterns.cc
+Functionality: Handles SLP (Superword Level Parallelism) pattern recognition in GCC. It includes functions for identifying and optimizing SLP patterns, facilitating vectorization of scalar operations.
+tree-vect-slp.cc
+Functionality: Manages SLP vectorization in GCC. It includes functions for transforming scalar operations into vector operations using SLP techniques, improving performance.
+tree-vect-stmts.cc
+Functionality: Implements statement vectorization in GCC. It includes functions for vectorizing individual statements within loops, facilitating efficient use of SIMD instructions.
+tree-vector-builder.cc
+Functionality: Provides utilities for building vector operations in GCC. It includes functions for creating and manipulating vector expressions, aiding in various vectorization optimizations.
+tree-vectorizer.cc
+Functionality: Manages the overall vectorization process in GCC. It includes functions for analyzing, transforming, and optimizing loops and statements to use vector instructions, improving performance.
+tree-vrp.cc
+Functionality: Implements value range propagation (VRP) in GCC. It includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations.
+tree.cc
+Functionality: Manages tree-based intermediate representations in GCC. It includes functions for creating, modifying, and analyzing tree nodes, providing a foundation for various optimizations and transformations.
+tristate.cc
+Functionality: Implements tristate logic utilities in GCC. It includes functions for handling three-valued logic (true, false, unknown), supporting optimizations that require tristate reasoning.
+tsan.cc
+Functionality: Implements ThreadSanitizer (TSan) support in GCC. It includes functions for instrumenting code to detect data races and other threading issues, aiding in debugging and ensuring thread safety.
+typed-splay-tree.cc
+Functionality: Manages typed splay trees in GCC. It includes functions for creating, manipulating, and querying splay trees with typed nodes, providing efficient data structures for various compiler analyses.
+ubsan.cc
+Functionality: Implements UndefinedBehaviorSanitizer (UBSan) support in GCC. It includes functions for instrumenting code to detect undefined behavior, aiding in debugging and ensuring code correctness.
+valtrack.cc
+Functionality: Handles value tracking in GCC. It includes functions for tracking the values of variables and expressions, aiding in various optimizations and transformations.
+value-pointer-equiv.cc
+Functionality: Implements value and pointer equivalence analysis in GCC. It includes functions for determining equivalence relationships between values and pointers, supporting optimizations that rely on these relationships.
+value-prof.cc
+Functionality: Manages value profiling in GCC. It includes functions for collecting and analyzing profiling data related to variable values, guiding optimizations based on runtime behavior.
+value-query.cc
+Functionality: Provides utilities for querying value information in GCC. It includes functions for analyzing and retrieving information about variable values, supporting various optimizations.
+value-range-pretty-print.cc
+Functionality: Implements pretty-printing for value ranges in GCC. It includes functions for generating human-readable output of value ranges, aiding in debugging and analysis.
+value-range-storage.cc
+Functionality: Manages storage for value ranges in GCC. It includes functions for allocating, deallocating, and handling value range data structures, supporting various analyses and optimizations.
+value-range.cc
+Functionality: Implements value range analysis in GCC. It includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations.
+value-relation.cc
+Functionality: Handles value relation analysis in GCC. It includes functions for analyzing relationships between variable values, supporting optimizations that rely on these relationships.
+var-tracking.cc
+Functionality: Manages variable tracking in GCC. It includes functions for tracking the values and locations of variables, aiding in debugging and optimizations.
+varasm.cc
+Functionality: Handles variable assembly in GCC. It includes functions for managing the assembly of global and static variables, ensuring efficient memory layout and access patterns.
+varpool.cc
+Functionality: Manages the variable pool in GCC. It includes functions for handling global variables and their attributes, supporting various optimizations and transformations.
+vec-perm-indices.cc
+Functionality: Implements utilities for handling vector permutation indices in GCC. This includes functions for reading and interpreting vector constants as permutation vectors, converting permutation indices to tree or RTL (Register Transfer Language) representations, and building vectors based on permutation indices.
+vec.cc
+Functionality: Manages vector operations in GCC. This includes functions for creating, manipulating, and optimizing vectors, facilitating various vectorization transformations and optimizations in the compiler.
+vmsdbgout.cc
+Functionality: Manages VMS debug output in GCC. This includes functions for generating debugging information compatible with the VMS operating system, ensuring that debug information is correctly formatted and useful for debugging on VMS platforms.
+vr-values.cc
+Functionality: Implements value range analysis in GCC. This includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations by providing detailed information about variable value ranges.
+vtable-verify.cc
+Functionality: Handles vtable verification in GCC. This includes functions for checking the consistency and correctness of virtual tables, ensuring that virtual function dispatch is reliable and correct.
+warning-control.cc
+Functionality: Manages warning control in GCC. This includes utilities for enabling, disabling, and customizing compiler warnings, allowing developers to control which warnings are reported and how they are handled.
+web.cc
+Functionality: Implements utilities related to web output in GCC. This includes functions for generating and managing web-based output formats, facilitating the integration of GCC with web-based tools and platforms.
+wide-int-print.cc
+Functionality: Handles wide integer printing in GCC. This includes functions for formatting and displaying wide integer values, ensuring that large integer values are presented correctly and readably.
+wide-int.cc
+Functionality: Manages wide integer operations in GCC. This includes utilities for arithmetic and logical operations on wide integers, supporting the handling of large integer values in various compiler analyses and optimizations.
+tree-vect-stmts.cc
+Functionality: Implements statement vectorization in GCC. It includes functions for vectorizing individual statements within loops, facilitating efficient use of SIMD instructions.
+tree-vector-builder.cc
+Functionality: Provides utilities for building vector operations in GCC. It includes functions for creating and manipulating vector expressions, aiding in various vectorization optimizations.
+tree-vectorizer.cc
+Functionality: Manages the overall vectorization process in GCC. It includes functions for analyzing, transforming, and optimizing loops and statements to use vector instructions, improving performance.
+tree-vrp.cc
+Functionality: Implements value range propagation (VRP) in GCC. It includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations.
+tree.cc
+Functionality: Manages tree-based intermediate representations in GCC. It includes functions for creating, modifying, and analyzing tree nodes, providing a foundation for various optimizations and transformations.
+tristate.cc
+Functionality: Implements tristate logic utilities in GCC. It includes functions for handling three-valued logic (true, false, unknown), supporting optimizations that require tristate reasoning.
+tsan.cc
+Functionality: Implements ThreadSanitizer (TSan) support in GCC. It includes functions for instrumenting code to detect data races and other threading issues, aiding in debugging and ensuring thread safety.
+typed-splay-tree.cc
+Functionality: Manages typed splay trees in GCC. It includes functions for creating, manipulating, and querying splay trees with typed nodes, providing efficient data structures for various compiler analyses.
+ubsan.cc
+Functionality: Implements UndefinedBehaviorSanitizer (UBSan) support in GCC. It includes functions for instrumenting code to detect undefined behavior, aiding in debugging and ensuring code correctness.
+valtrack.cc
+Functionality: Handles value tracking in GCC. It includes functions for tracking the values of variables and expressions, aiding in various optimizations and transformations.
+value-pointer-equiv.cc
+Functionality: Implements value and pointer equivalence analysis in GCC. It includes functions for determining equivalence relationships between values and pointers, supporting optimizations that rely on these relationships.
+value-prof.cc
+Functionality: Manages value profiling in GCC. It includes functions for collecting and analyzing profiling data related to variable values, guiding optimizations based on runtime behavior.
+value-query.cc
+Functionality: Provides utilities for querying value information in GCC. It includes functions for analyzing and retrieving information about variable values, supporting various optimizations.
+value-range-pretty-print.cc
+Functionality: Implements pretty-printing for value ranges in GCC. It includes functions for generating human-readable output of value ranges, aiding in debugging and analysis.
+value-range-storage.cc
+Functionality: Manages storage for value ranges in GCC. It includes functions for allocating, deallocating, and handling value range data structures, supporting various analyses and optimizations.
+value-range.cc
+Functionality: Implements value range analysis in GCC. It includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations.
+value-relation.cc
+Functionality: Handles value relation analysis in GCC. It includes functions for analyzing relationships between variable values, supporting optimizations that rely on these relationships.
+var-tracking.cc
+Functionality: Manages variable tracking in GCC. It includes functions for tracking the values and locations of variables, aiding in debugging and optimizations.
+varasm.cc
+Functionality: Handles variable assembly in GCC. It includes functions for managing the assembly of global and static variables, ensuring efficient memory layout and access patterns.
+varpool.cc
+Functionality: Manages the variable pool in GCC. It includes functions for handling global variables and their attributes, supporting various optimizations and transformations.
+vec-perm-indices.cc
+Functionality: Implements utilities for handling vector permutation indices in GCC. This includes functions for reading and interpreting vector constants as permutation vectors, converting permutation indices to tree or RTL (Register Transfer Language) representations, and building vectors based on permutation indices.
+vec.cc
+Functionality: Manages vector operations in GCC. This includes functions for creating, manipulating, and optimizing vectors, facilitating various vectorization transformations and optimizations in the compiler.
+vmsdbgout.cc
+Functionality: Manages VMS debug output in GCC. This includes functions for generating debugging information compatible with the VMS operating system, ensuring that debug information is correctly formatted and useful for debugging on VMS platforms.
+vr-values.cc
+Functionality: Implements value range analysis in GCC. This includes functions for analyzing and propagating value ranges through the control flow graph, aiding in various optimizations by providing detailed information about variable value ranges.
+vtable-verify.cc
+Functionality: Handles vtable verification in GCC. This includes functions for checking the consistency and correctness of virtual tables, ensuring that virtual function dispatch is reliable and correct.
+warning-control.cc
+Functionality: Manages warning control in GCC. This includes utilities for enabling, disabling, and customizing compiler warnings, allowing developers to control which warnings are reported and how they are handled.
+web.cc
+Functionality: Implements utilities related to web output in GCC. This includes functions for generating and managing web-based output formats, facilitating the integration of GCC with web-based tools and platforms.
+wide-int-print.cc
+Functionality: Handles wide integer printing in GCC. This includes functions for formatting and displaying wide integer values, ensuring that large integer values are presented correctly and readably.
+wide-int.cc
+Functionality: Manages wide integer operations in GCC. This includes utilities for arithmetic and logical operations on wide integers, supporting the handling of large integer values in various compiler analyses and optimizations.
+[gcc-end]
+

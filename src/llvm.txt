@@ -1,0 +1,310 @@
+[llvm-start]
+AggressiveInstCombine.cpp: This file implements aggressive instruction combining optimizations. It focuses on folding uncommon and expensive patterns such as consecutive loads, guarded funnel shifts, and complex instruction patterns that standard InstCombine doesn’t handle. This pass targets more aggressive optimizations, including recognizing certain table-based operations and simplifying control flow based on known conditions, often making the code more efficient without additional complexity.
+TruncInstCombine.cpp: This file deals with optimizations for truncation instructions. It builds an expression graph around truncation patterns and reduces the bit-width of operands when possible, aiming to generate more efficient truncation chains and minimize unnecessary computations.
+CFGuard.cpp: Implements support for the Control Flow Guard CFGuard) security feature. CFGuard is a Microsoft Windows security mechanism that protects against indirect branch target attacks. This file focuses on ensuring compliance with CFGuard by instrumenting certain control flow structures.
+CoroCleanup.cpp: This file cleans up coroutine code by simplifying the control flow and removing unnecessary coroutine structures after coroutine splitting has been applied. It improves code generated for coroutines.
+
+CoroConditionalWrapper.cpp: This component handles conditional wrapping of coroutine-related code, ensuring that coroutine transformations work smoothly depending on certain runtime conditions.
+
+CoroEarly.cpp: Part of LLVM’s coroutine infrastructure, this pass lowers coroutine intrinsics early in the optimization pipeline. It prepares coroutine-related constructs for later transformations, helping to simplify and optimize them in subsequent passes.
+
+CoroElide.cpp: This file optimizes coroutine code by removing unnecessary coroutine frames when they are not required, leading to improved runtime performance and reduced memory overhead.
+
+CoroFrame.cpp: This pass handles the creation and management of coroutine frames, which are necessary for suspending and resuming coroutine execution. It focuses on efficiently managing memory and ensuring correctness in coroutine state handling.
+
+CoroSplit.cpp: Responsible for splitting coroutine functions into their constituent parts: the coroutine body and the suspension/resumption points. This transformation allows LLVM to optimize the various parts independently, enhancing performance.
+
+Coroutines.cpp: This file integrates all the coroutine passes into the LLVM pipeline. It coordinates how coroutine-related transformations are applied across various stages of optimization.
+
+HipStdPar.cpp: Supports the HIP (Heterogeneous-Compute Interface for Portability) API for parallelism. It deals with optimizing parallel constructs on GPU architectures.
+
+InstCombineAddSub.cpp: Focuses on simplifying addition and subtraction instructions. This file performs various transformations to reduce redundant arithmetic operations and make code more efficient.
+
+InstCombineAndOrXor.cpp: Optimizes bitwise operations, such as AND, OR, and XOR, by simplifying patterns and reducing unnecessary bitwise manipulations.
+
+InstCombineAtomicRMW.cpp: Handles atomic read-modify-write instructions, simplifying them when possible. This can help optimize code that involves atomic operations, particularly in multithreaded environments.
+
+InstCombineCalls.cpp: Simplifies function calls, performing inlining and other transformations to eliminate unnecessary function call overhead and improve performance.
+
+InstCombineCasts.cpp: Optimizes casting instructions, such as bit casts and sign extensions, by folding them into fewer operations and eliminating redundant casts.
+
+InstCombineCompares.cpp: Simplifies comparison instructions (e.g., equality or inequality checks) by removing redundant or unnecessary comparisons.
+
+InstCombineLoadStoreAlloca.cpp: Focuses on optimizing memory access instructions, such as loads, stores, and allocations, improving memory efficiency and reducing redundant memory operations.
+
+InstCombineMulDivRem.cpp: Simplifies multiplication, division, and remainder operations, reducing the complexity of arithmetic computations.
+
+InstCombineNegator.cpp: Handles negation operations, transforming them into more efficient forms when possible.
+
+InstCombinePHI.cpp: Optimizes PHI nodes, which are used in SSA (Static Single Assignment) form to represent variables that can have multiple incoming values from different control flow paths.
+
+InstCombineSelect.cpp: Simplifies select instructions, which choose between values based on a condition, by removing unnecessary conditional logic.
+
+InstCombineShifts.cpp: Optimizes shift instructions (e.g., left shift, right shift) by folding them into simpler forms.
+
+InstCombineSimplifyDemanded.cpp: Simplifies instructions by analyzing which bits of a value are actually demanded, eliminating unused computations.
+
+InstCombineVectorOps.cpp: Optimizes vector operations, reducing redundant computations in SIMD (Single Instruction, Multiple Data) contexts.
+
+InstructionCombining.cpp: This is the main driver of the instruction combining pass, integrating all the individual optimization steps (like the ones described above) to improve overall program performance.
+
+AddressSanitizer.cpp: Implements AddressSanitizer (ASan), a memory error detector that identifies issues like buffer overflows and use-after-free bugs.
+
+BlockCoverageInference.cpp: Part of LLVM's profiling infrastructure, this pass deals with block coverage data to infer which blocks of code were executed during a program's run.
+
+BoundsChecking.cpp: Implements checks for out-of-bounds accesses to ensure memory safety, commonly used in secure and safety-critical applications.
+
+CGProfile.cpp: Handles call graph profiling, gathering runtime data about function calls to help optimize function inlining and other call-related transformations.
+
+ControlHeightReduction.cpp: Focuses on reducing the "height" of control dependencies in a program, which can help reduce pipeline stalls in CPU execution.
+
+DataFlowSanitizer.cpp: Implements a data flow sanitizer, which tracks the flow of data through a program to detect uninitialized or tainted data.
+
+GCOVProfiling.cpp: Adds support for GCOV-based profiling, used to collect code coverage information.
+
+HWAddressSanitizer.cpp: Implements hardware-assisted address sanitization to detect memory issues more efficiently using modern CPU features.
+
+IndirectCallPromotion.cpp: Optimizes indirect function calls by promoting them to direct calls when the target function is known at compile time.
+
+InstrOrderFile.cpp: Manages instruction ordering information to help with debugging and profiling.
+
+InstrProfiling.cpp: Implements profiling for instructions, collecting runtime data on how frequently different instructions are executed.
+
+Instrumentation.cpp: Handles various forms of instrumentation, including adding hooks for profilers and sanitizers.
+
+KCFI.cpp: Implements Kernel Control Flow Integrity (KCFI), which adds security checks to protect the kernel from control flow hijacking.
+
+LowerAllowCheckPass.cpp: Lowers runtime checks added for memory safety, optimizing them after they have been introduced by earlier passes.
+
+MemorySanitizer.cpp: Implements MemorySanitizer (MSan), which detects the use of uninitialized memory.
+
+MemProfiler.cpp: Profiles memory usage to help optimize memory allocation and deallocation patterns.
+
+NumericalStabilitySanitizer.cpp: Detects floating-point operations that may lead to numerical instability, ensuring more reliable computations.
+
+PGOCtxProfLowering.cpp: Lowers profile-guided optimizations by applying function attribute changes based on runtime profiling data.
+
+PGOForceFunctionAttrs.cpp: Forces function attributes based on profile-guided optimization data, improving function-specific optimizations.
+
+PGOInstrumentation.cpp: Adds instrumentation to collect profile-guided optimization data during runtime.
+
+PGOMemOPSizeOpt.cpp: Optimizes memory operations based on profiling data, improving the efficiency of memory accesses.
+
+PoisonChecking.cpp: Implements checks for "poison" values, which represent undefined behavior in LLVM, to ensure correctness.
+
+RealtimeSanitizer.cpp: Provides runtime sanitization checks for programs running in real-time systems.
+
+SanitizerBinaryMetadata.cpp: This file implements a pass that attaches metadata to instructions and functions, specifically for use in sanitizer tools. The metadata is used to track features like atomic operations and unsafe memory accesses. This information helps sanitizers like ThreadSanitizer (TSan) and AddressSanitizer (ASan) identify and handle potential issues during runtime.
+SanitizerCoverage.cpp: This file provides support for sanitizer-based code coverage by instrumenting programs to collect execution data. It focuses on generating coverage information that can be used to identify which parts of the code were executed, making it useful for fuzz testing and bug detection.
+
+ThreadSanitizer.cpp: Implements the instrumentation for ThreadSanitizer (TSan), a tool used to detect race conditions in multithreaded programs. It instruments memory accesses and synchronization operations to catch potential data races.
+ValueProfileCollector.cpp: This file is part of LLVM’s profile-guided optimizations. It collects runtime profiling information about values, which helps optimize branches and other operations based on the observed runtime behavior of the program.
+ValueProfilePlugins.inc: Contains definitions for plugins used in value profiling. These plugins are utilized to enhance the runtime data collection capabilities in LLVM, enabling more targeted and efficient optimizations based on profiling data.
+AlwaysInliner.cpp: This file defines an inlining pass that always inlines functions marked as always_inline. It is used to ensure that small functions or critical functions are always inlined, improving performance at the expense of increased code size.
+Annotation2Metadata.cpp: Translates user-provided annotations into LLVM metadata. This is useful for attaching custom information to variables or functions, which can be used later in optimization or instrumentation passes.
+ArgumentPromotion.cpp: Promotes "by reference" arguments (pointers) to "by value" arguments when possible. This optimization improves performance by enabling better analysis and more aggressive optimizations on promoted arguments.
+Attributor.cpp: Implements the Attributor framework, which is responsible for deducing and propagating function and variable attributes (e.g., noreturn, readonly). The goal is to optimize based on these attributes and remove unnecessary computations.
+AttributorAttributes.cpp: This file is an extension of the Attributor framework, focusing on specific attributes such as memory behavior, control flow properties, and others. It enables more granular optimizations based on the attributes inferred by the Attributor framework.
+
+BarrierNoopPass.cpp: Implements a pass that acts as a barrier but performs no operation, often used for debugging purposes or in certain control flow situations where a pass must exist but not alter the code.
+BlockExtractor.cpp: Extracts basic blocks from a function into separate functions. This is typically used for code isolation or transformation purposes.
+CalledValuePropagation.cpp: Propagates known values of function arguments through function calls, which enables better optimization by allowing the compiler to make assumptions about the values at the call site.
+ConstantMerge.cpp: Merges identical constants in a program to reduce memory usage and improve cache locality.
+CrossDSOCFI.cpp: Implements cross-DSO (Dynamic Shared Object) Control Flow Integrity, which adds security checks to ensure that indirect calls and jumps in shared libraries target valid locations.
+DeadArgumentElimination.cpp: Removes arguments from functions that are never used, reducing the overhead of function calls and enabling other optimizations.
+ElimAvailExtern.cpp: Eliminates external functions that are not actually used in a given module, reducing the size of the binary and improving load times.
+EmbedBitcodePass.cpp: Embeds LLVM bitcode into a binary, allowing it to be extracted and recompiled later. This is useful for whole-program optimization at runtime.
+ExpandVariadics.cpp: Expands variadic function calls into non-variadic ones when possible, which can improve performance by reducing the complexity of function calling conventions.
+ExtractGV.cpp: Extracts global variables into separate modules, enabling fine-grained control over which parts of the program are compiled and linked together.
+ForceFunctionAttrs.cpp: Forces specific function attributes to be applied based on the target architecture or other criteria. This helps enforce certain optimizations or behaviors across all functions.
+FunctionAttrs.cpp: Infers and applies function attributes based on the behavior of the program. These attributes can include things like noreturn, readonly, or nosync, which help optimize the program further.
+FunctionImport.cpp: Implements the logic for importing functions from one module into another during link-time optimization (LTO), allowing for cross-module optimizations.
+FunctionSpecialization.cpp: Specializes functions based on their argument values, creating optimized versions of functions that are faster when called with certain arguments.
+GlobalDCE.cpp: Implements global dead code elimination, which removes unused global variables, functions, and other declarations to reduce the binary size.
+GlobalOpt.cpp: Optimizes global variables and functions, performing transformations such as constant folding or merging globals.
+GlobalSplit.cpp: Splits large global variables into smaller parts, which can reduce memory overhead and improve cache locality.
+HotColdSplitting.cpp: Splits "hot" (frequently executed) and "cold" (rarely executed) parts of functions into separate functions, improving cache efficiency and performance.
+InferFunctionAttrs.cpp: Deduces function attributes based on how the function is used throughout the program, enabling further optimizations.
+Inliner.cpp: Implements the general function inlining logic, which tries to inline functions to improve performance by reducing function call overhead.
+Internalize.cpp: Converts external linkage functions and variables to internal linkage when they are not used outside their module, reducing the binary size and improving optimization opportunities.
+IPO.cpp: Contains several interprocedural optimizations that work across function boundaries to improve performance and reduce code size.
+IROutliner.cpp: Identifies and outlines repeated code patterns into separate functions, reducing code duplication and improving maintainability.
+LoopExtractor.cpp: Extracts loops from functions into separate functions. This can help isolate performance-critical loops for optimizations like vectorization.
+LowerTypeTests.cpp: Lowers type-checking operations, often used in dynamic languages or when performing type-based optimizations.
+MemProfContextDisambiguation.cpp: Uses memory profiling information to disambiguate memory accesses, enabling better optimization by reducing unnecessary memory barriers.
+MergeFunctions.cpp: Merges identical functions to reduce code size and improve memory usage by avoiding duplicated function bodies.
+ModuleInliner.cpp: Inlines functions across module boundaries during link-time optimization (LTO).
+OpenMPOpt.cpp: Optimizes OpenMP code by applying transformations to improve parallel execution and reduce overhead associated with parallel constructs.
+PartialInlining.cpp: Partially inlines functions by inlining only certain parts of them, allowing for optimized execution while avoiding code bloat.
+SampleContextTracker.cpp: Tracks sampling-based profiling information to guide optimizations based on how frequently different parts of the code are executed.
+SampleProfile.cpp: Uses sample-based profiling information to guide optimizations, such as inlining and loop unrolling, based on observed program behavior.
+SampleProfileMatcher.cpp: Matches profiling data to corresponding parts of the code, ensuring that optimizations are applied based on accurate runtime information.
+SampleProfileProbe.cpp: Inserts profiling probes into the program to collect sample-based execution data for optimizing the code later.
+SCCP.cpp: Implements Sparse Conditional Constant Propagation, an optimization that tries to replace variables with constant values when possible.
+StripDeadPrototypes.cpp: Removes unused function prototypes, reducing binary size and simplifying the symbol table.
+StripSymbols.cpp: Strips symbols that are not required for debugging or execution, reducing binary size.
+SyntheticCountsPropagation.cpp: Propagates synthetic counts (e.g., inferred execution frequencies) through the program, guiding optimizations like inlining and loop unrolling.
+ThinLTOBitcodeWriter.cpp: Writes out bitcode files for ThinLTO, a lightweight link-time optimization mechanism that allows for parallel compilation across multiple translation units.
+WholeProgramDevirt.cpp: Implements whole-program devirtualization, replacing virtual function calls with direct calls when possible across the entire program, improving performance.
+DependencyAnalysis.cpp: Analyzes data dependencies in the program, which is critical for enabling optimizations like loopHere's a complete summary of the LLVM source files from the links you provided.
+ObjCARC.cpp: This file serves as the central point for the Objective-C Automatic Reference Counting (ARC) optimization passes. It includes utilities and transformations that optimize reference counting operations for Objective-C objects, improving performance and reducing memory overhead by eliminating unnecessary retain, release, and autorelease operations.
+
+ObjCARCAPElim.cpp: This pass eliminates unnecessary autorelease pool operations, particularly in global constructors. It focuses on finding autorelease pools that are automatically inserted by the compiler but are unnecessary, especially in simple one-block functions like those found in global constructors.
+
+ObjCARCContract.cpp: This file defines the ARC contraction pass, which optimizes sequences of ARC-related instructions by combining or simplifying them. For example, it replaces separate retain and release operations with more efficient patterns. It works with Objective-C-specific ARC semantics and requires knowledge of certain library functions.
+
+ObjCARCExpand.cpp: This pass expands ARC instructions into more explicit retain, release, and autorelease calls. It simplifies the ARC operations for the backend to process, transforming higher-level ARC operations into a more detailed form.
+ObjCARCOpts.cpp: This file implements optimizations that eliminate redundant ARC operations, such as no-op calls and unnecessary retain-release pairs. It also performs peephole optimizations to streamline ARC-related code paths.
+
+ProvenanceAnalysis.cpp: This file implements a special form of alias analysis, called provenance analysis, which is used in ARC optimizations. It determines whether two pointers refer to the same underlying Objective-C object, which is crucial for optimizing reference counting operations.
+
+
+ProvenanceAnalysisEvaluator.cpp: This file evaluates the effectiveness of provenance analysis. It helps validate and test how well the provenance analysis works by analyzing relationships between pointers in the context of ARC.
+
+PtrState.cpp: This file tracks the state of pointers within ARC operations, specifically managing the retain and release state of Objective-C objects. It is essential for analyzing the control flow around ARC operations to ensure correctness during optimizations.
+
+ADCE.cpp: This file implements Aggressive Dead Code Elimination (ADCE), which removes computations and instructions that have no effect on the program’s outcome. It aggressively prunes dead code to optimize performance and reduce binary size.
+
+AlignmentFromAssumptions.cpp: This pass uses assumptions made about memory alignment to optimize memory accesses. By leveraging alignment information, the compiler can generate more efficient memory instructions.
+AnnotationRemarks.cpp: Generates remarks based on annotations in the code, providing insights into how specific parts of the code are optimized or handled during compilation.
+
+BDCE.cpp: Bit-Dead Code Elimination removes unused bits in variables or instructions, helping to avoid unnecessary computations and memory usage, thus optimizing the program’s performance.
+
+CallSiteSplitting.cpp: Splits function call sites based on known argument values or conditions, allowing for more specialized and efficient handling of function calls based on their usage.
+
+ConstantHoisting.cpp: This optimization pass moves constants out of loops or other repetitive structures, reducing redundant constant loads and improving overall program efficiency.
+
+ConstraintElimination.cpp: Eliminates redundant constraints, such as unnecessary comparisons or checks, simplifying the program and enabling further optimizations.
+
+CorrelatedValuePropagation.cpp: Propagates known correlated values through the program, enabling more opportunities for simplification and optimization by tracking value relationships.
+
+DCE.cpp: Dead Code Elimination removes instructions and code segments that do not influence the program’s result, cleaning up the code and improving performance.
+
+DeadStoreElimination.cpp: Removes stores to memory locations that are never read later in the program, reducing unnecessary memory writes and improving memory performance.
+
+DFAJumpThreading.cpp: Optimizes control flow by threading jumps through conditional branches, reducing unnecessary branches and improving execution efficiency.
+
+DivRemPairs.cpp: Optimizes division and remainder operations by combining them when applicable, reducing the number of arithmetic operations and improving performance.
+
+EarlyCSE.cpp: Early Common Subexpression Elimination removes redundant computations early in the optimization pipeline, making the program more efficient by reducing repeated calculations.
+
+FlattenCFGPass.cpp: Simplifies the control flow graph by removing unnecessary branches and merging basic blocks, leading to more optimized and straightforward code generation.
+
+Float2Int.cpp: Converts floating-point operations to integer operations where possible, taking advantage of faster integer arithmetic to improve performance on certain architectures.
+
+GuardWidening.cpp: Optimizes guard instructions by widening the conditions, allowing fewer checks to be performed at runtime, reducing the overhead of runtime safety checks.
+
+GVN.cpp: Global Value Numbering optimizes the program by identifying and eliminating redundant computations, improving efficiency by assigning unique values to equivalent operations.
+
+GVNHoist.cpp: Moves global values out of loops, reducing repeated computations within loops and improving runtime performance by minimizing redundant operations.
+
+GVNSink.cpp: Sinks global values into blocks where they are used, preventing unnecessary global value computations and improving the efficiency of memory usage.
+
+InductiveRangeCheckElimination.cpp: Removes range checks within loops by using inductive reasoning, proving that the checks are unnecessary and improving loop performance.
+
+IndVarSimplify.cpp: Simplifies induction variables in loops, reducing unnecessary computations and improving loop execution efficiency by optimizing loop structures.
+
+InferAddressSpaces.cpp: Infers address spaces and applies optimizations based on known memory regions, improving memory access patterns and reducing overhead in memory operations.
+
+InferAlignment.cpp: Uses inferred alignment information to optimize memory accesses, allowing for more efficient memory loads and stores by leveraging known alignment properties.
+
+InstSimplifyPass.cpp: Simplifies individual instructions by applying local transformations, cleaning up the code and reducing complexity to improve overall program performance.
+
+IVUsersPrinter.cpp: Outputs information about induction variables, primarily for debugging and understanding how loop-related variables are being optimized during compilation.
+
+JumpTableToSwitch.cpp: Converts jump tables to switch statements, enabling more efficient control flow in certain cases by taking advantage of faster branching mechanisms.
+
+JumpThreading.cpp: Optimizes control flow by threading jumps through conditional branches, removing unnecessary jumps and improving the efficiency of control flow.
+
+LICM.cpp: Loop-Invariant Code Motion moves computations that are invariant inside loops to outside the loops, reducing redundant operations and improving loop performance.
+
+LoopAccessAnalysisPrinter.cpp: Provides detailed information about memory accesses within loops, useful for debugging and optimizing loop memory operations.
+
+LoopBoundSplit.cpp: Splits loops based on their iteration bounds, enabling more efficient loop handling under certain conditions, improving loop performance.
+
+LoopDataPrefetch.cpp: Prefetches data for loops to improve memory access patterns, reducing cache misses and improving performance, especially in memory-bound loops.
+
+LoopDeletion.cpp: Deletes loops that do not affect program output, removing unnecessary computations and improving the overall performance by simplifying control flow.
+
+LoopDistribute.cpp: Distributes loop iterations across multiple loops, enabling better parallelization and optimization of loop performance by dividing work into smaller, more manageable parts.
+
+LoopFlatten.cpp: Flattens nested loops into a single loop where possible, reducing loop overhead and improving performance by minimizing the complexity of loop structures.
+
+LoopFuse.cpp: Fuses adjacent loops that have compatible iteration ranges, reducing the overhead of multiple loop control structures and improving execution efficiency.
+
+LoopIdiomRecognize.cpp: Recognizes common loop idioms and replaces them with more efficient patterns or library calls, improving loop performance by leveraging optimized routines.
+
+LoopInstSimplify.cpp: Simplifies instructions inside loops, reducing unnecessary computations and improving the efficiency of loop execution.
+
+LoopInterchange.cpp: Interchanges nested loops to improve data locality, leading to better memory access patterns and improved performance in certain cases.
+
+LoopLoadElimination.cpp: Eliminates redundant memory loads within loops, reducing the number of memory accesses and improving performance, especially in memory-bound loops.
+
+LoopPassManager.cpp: Manages loop optimizations, coordinating the application of multiple passes that transform and optimize loops in the program.
+
+LoopPredication.cpp: Optimizes loops by converting conditions into predicated execution, reducing control flow complexity and improving loop performance.
+LoopRotation.cpp: This file implements the Loop Rotation pass, which is designed to improve loop performance and facilitate optimizations like vectorization. It rotates loops by moving loop conditions to the end, thus creating a more optimized loop structure that simplifies further transformations. Loop rotation is particularly useful in enabling other loop-related optimizations, such as those involving memory or control flow.
+
+LoopSimplifyCFG.cpp: This file performs control flow simplification in loops, transforming complex control flow into simpler forms, making it easier for later optimizations to work on loops. This includes removing unnecessary branches and merging basic blocks when possible.
+
+LoopSink.cpp: This pass moves loop-invariant computations (that don't depend on loop variables) out of the loop, reducing the overhead of recomputing these values on each iteration. This improves efficiency, especially in tight loops.
+
+LoopStrengthReduce.cpp: This file reduces the strength of loop computations by replacing expensive operations, like multiplications, with simpler ones, such as additions. This optimization helps improve the performance of loops, particularly when dealing with loop induction variables.
+
+LoopUnrollAndJamPass.cpp: This pass performs "unroll and jam" optimizations, where it unrolls loops and fuses their inner loops, which can improve cache performance and parallelism by reducing loop overhead and making better use of memory bandwidth.
+
+LoopUnrollPass.cpp: Implements loop unrolling, an optimization that duplicates the loop body multiple times to reduce loop control overhead and increase instruction-level parallelism. Unrolling is useful in performance-critical loops.
+
+LoopVersioningLICM.cpp: This pass performs loop invariant code motion (LICM) while versioning loops, allowing certain loop transformations to happen safely even when memory aliasing might otherwise prevent it.
+
+LowerAtomicPass.cpp: This file lowers high-level atomic operations into simpler, lower-level operations that can be handled directly by the hardware or by other LLVM optimizations.
+
+LowerConstantIntrinsics.cpp: Lowers constant intrinsics into simpler instructions or constant values, reducing the complexity of constant operations and enabling further optimizations.
+
+LowerExpectIntrinsic.cpp: Lowers the llvm.expect intrinsic, which is used to indicate likely or unlikely branches, into basic branches with hints for the optimizer to focus on the expected paths.
+
+LowerGuardIntrinsic.cpp: Lowers the guard intrinsic, which ensures that certain conditions hold true at runtime. This pass replaces the guard with actual runtime checks, helping maintain program correctness while allowing optimizations.
+
+LowerMatrixIntrinsics.cpp: Lowers matrix-related intrinsic functions into standard LLVM instructions. This allows matrix operations to be more easily optimized and executed on a wider range of hardware.
+
+LowerWidenableCondition.cpp: Lowers the widenable_condition intrinsic, which is used to control conditional execution in a way that allows for optimization. This transformation ensures that the condition is evaluated correctly while allowing optimizations.
+
+MakeGuardsExplicit.cpp: Converts implicit guards, used to ensure certain conditions are met, into explicit checks. This helps in optimizations where explicit control flow checks are easier to manage.
+
+MemCpyOptimizer.cpp: Optimizes memory copy (memcpy) operations by simplifying or eliminating redundant memory operations, improving memory access patterns and reducing unnecessary copying.
+
+MergedLoadStoreMotion.cpp: Optimizes memory operations by merging adjacent load and store instructions, improving memory access efficiency and reducing redundant operations.
+
+MergeICmps.cpp: Merges consecutive integer comparisons (icmp operations) into a single comparison, reducing the number of instructions and simplifying control flow.
+
+NaryReassociate.cpp: Reassociates n-ary expressions (expressions involving multiple terms) to improve computational efficiency and enable further optimizations, particularly in arithmetic-intensive code.
+
+NewGVN.cpp: Implements a new version of Global Value Numbering (GVN), which eliminates redundant calculations by assigning a unique number to each equivalent computation, improving performance by reducing duplicated work.
+
+PartiallyInlineLibCalls.cpp: This pass attempts to inline parts of library function calls, improving performance by avoiding the overhead of full function calls while retaining the benefits of using library code.
+
+PlaceSafepoints.cpp: Places safepoints in code, which are locations where garbage collection can occur safely. This pass is critical for managed runtimes, allowing garbage collection to interrupt the program without causing inconsistencies.
+
+Reassociate.cpp: Reorders and simplifies associative operations (like addition or multiplication) to improve performance and enable more aggressive optimizations.
+
+Reg2Mem.cpp: Converts register-based values into memory-based ones, typically used in debugging or lowering optimization levels where easier visibility of intermediate values is required.
+
+RewriteStatepointsForGC.cpp: Rewrites statepoints for garbage collection, allowing accurate tracking of pointers during garbage collection, ensuring that object references are correctly maintained.
+
+Scalar.cpp: Implements various scalar transformations that simplify individual instructions, making them easier to optimize in later passes.
+
+ScalarizeMaskedMemIntrin.cpp: Optimizes masked memory intrinsics by scalarizing them, converting them into simpler operations that are easier to optimize and execute.
+
+Scalarizer.cpp: Converts vector operations into scalar operations where appropriate, simplifying vectorized code when vectorization is not beneficial, improving performance on scalar-based architectures.
+
+SCCP.cpp: Sparse Conditional Constant Propagation optimizes code by propagating constant values and simplifying branches based on known conditions, reducing unnecessary computations.
+
+SeparateConstOffsetFromGEP.cpp: Optimizes memory addressing by separating constant offsets from GetElementPtr (GEP) instructions, making addressing more efficient and allowing further optimizations.
+
+SimpleLoopUnswitch.cpp: Optimizes loops by moving (or unswitching) loop-invariant conditionals outside the loop, reducing the number of branches executed within the loop and improving performance.
+
+SimplifyCFGPass.cpp: Simplifies the control flow graph (CFG) by removing redundant branches, merging basic blocks, and simplifying control flow structures, making the code easier to optimize.
+
+Sink.cpp: Moves instructions that are used later in the program closer to their point of use, reducing register pressure and improving instruction locality.
+
+SpeculativeExecution.cpp: Optimizes code by executing certain operations speculatively, i.e., before their necessity is confirmed, allowing better utilization of available computation resources.

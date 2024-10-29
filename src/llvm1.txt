@@ -1,0 +1,413 @@
+SROA.cpp: Scalar Replacement of Aggregates splits aggregate data structures like arrays and structs into individual scalar variables, allowing more fine-grained optimizations.
+
+StraightLineStrengthReduce.cpp: Optimizes straight-line code (code without branches) by reducing the strength of expensive operations, such as multiplications, to cheaper ones like additions or bit shifts.
+
+StructurizeCFG.cpp: Converts complex control flow structures, like irreducible control flow, into simpler, structured ones, which are easier to optimize and analyze.
+
+TailRecursionElimination.cpp: Optimizes recursive functions by transforming them into loops, eliminating the overhead of function calls and reducing stack usage.
+
+TLSVariableHoist.cpp: Optimizes thread-local storage (TLS) accesses by hoisting them out of loops, reducing the overhead associated with accessing TLS variables.
+
+WarnMissedTransforms.cpp: This pass emits warnings when certain important optimizations are missed, helping developers identify opportunities for performance improvements.
+
+AddDiscriminators.cpp: Adds profile discriminators to the code, which are used to distinguish between different paths in profiling data, enabling more precise optimizations based on runtime behavior.
+
+AMDGPUEmitPrintf.cpp: Implements support for emitting printf calls in AMDGPU, allowing formatted output to be generated from GPU kernels for debugging or informational purposes.
+
+ASanStackFrameLayout.cpp: Implements AddressSanitizer (ASan) stack frame layout transformations, ensuring that stack frames are instrumented correctly for detecting stack-based memory errors.
+
+AssumeBundleBuilder.cpp: Helps in building assume instructions, which allow the compiler to make assumptions about values for better optimization opportunities.
+
+BasicBlockUtils.cpp: Provides utility functions for manipulating basic blocks, such as splitting blocks, merging blocks, and removing unnecessary instructions.
+
+BreakCriticalEdges.cpp: Splits critical edges in the control flow graph, which are edges that connect a block with multiple predecessors to a block with multiple successors, improving the ability to apply optimizations.
+
+BuildLibCalls.cpp: Provides utilities for building standard library calls (e.g., memcpy, memset), making it easier to generate optimized code that uses these common functions.
+
+BypassSlowDivision.cpp: Optimizes division operations by replacing slow division instructions with faster alternatives where possible, such as using reciprocal multiplication.
+
+CallGraphUpdater.cpp: Updates the call graph when functions are modified, ensuring that the call graph remains accurate for subsequent analyses and optimizations.
+
+CallPromotionUtils.cpp: Provides utilities for promoting indirect function calls to direct calls when the target function is known, improving performance by eliminating the overhead of indirect calls.
+
+CanonicalizeAliases.cpp: Canonicalizes alias relationships to make them more amenable to optimizations, reducing the complexity of memory alias analysis.
+
+CanonicalizeFreezeInLoops.cpp: Canonicalizes freeze instructions inside loops, ensuring that they are placed in the most optimal location to avoid unnecessary overhead.
+CloneFunction.cpp: This file provides functionality for cloning a function within LLVM. It allows copying a function, including all its instructions, basic blocks, and metadata, into a new function while optionally modifying the arguments and references. This process is commonly used in transformations like partial inlining or modifying function signatures without altering the original function.
+CloneModule.cpp: Implements the logic to clone an entire LLVM module, including functions, global variables, and other module-level entities like metadata. The cloned module can have certain attributes and references modified as specified by the caller, making it useful for scenarios like cross-module optimizations.
+
+CodeExtractor.cpp: Facilitates the extraction of code from a function into a separate function. This is useful for outlining parts of a function into a new one, such as when creating helper functions or performing optimizations like partial inlining.
+
+CodeLayout.cpp: Optimizes the layout of code in memory for better performance, particularly focused on reducing cache misses by placing frequently used functions and blocks close together.
+
+CodeMoverUtils.cpp: Provides utilities for moving code within a function or across functions. It helps in transformations where blocks or instructions need to be repositioned for better performance or simplified control flow.
+
+CountVisits.cpp: Used for profiling, this file counts the number of times specific blocks or instructions in a function are executed. This information helps in identifying hot paths for optimization.
+
+CtorUtils.cpp: This file contains utilities for manipulating constructor functions, particularly in transforming static constructors in global initialization or finalization.
+
+Debugify.cpp: Adds debugging metadata to LLVM functions to ensure that optimizations preserve debug information. It’s useful for validating that transformations do not break or strip essential debugging information.
+
+DemoteRegToStack.cpp: Converts register values to stack values, typically used when trying to debug a function or when transforming functions to make values more accessible for instrumentation.
+
+DXILUpgrade.cpp: Deals with upgrading DirectX Intermediate Language (DXIL) modules, ensuring compatibility with newer versions of the DirectX shader compiler and runtime.
+
+EntryExitInstrumenter.cpp: Inserts instrumentation at function entry and exit points, usually to collect profiling or tracing information such as recording function call times.
+
+EscapeEnumerator.cpp: Used to enumerate all possible points in a function where a value might escape its scope, which is crucial in understanding the side effects of code and for optimizations like memory aliasing analysis.
+
+Evaluator.cpp: Implements constant folding by evaluating constant expressions at compile time, reducing the need to perform these calculations at runtime.
+
+FixIrreducible.cpp: Transforms irreducible control flow (control flow with complex loops or jumps) into a more structured form, making it easier for other passes to optimize.
+
+FlattenCFG.cpp: Flattens the control flow graph (CFG) of a function by merging branches and simplifying loops, improving the readability and performance of the code.
+
+FunctionComparator.cpp: Compares two functions to determine if they are equivalent in structure and content, which is useful for function merging optimizations.
+
+FunctionImportUtils.cpp: Provides utilities for importing functions from one module to another, especially in the context of link-time optimization (LTO), where functions from different modules are merged for better performance.
+
+GlobalStatus.cpp: Analyzes the status of global variables to determine if they are mutable or can be constant, helping in optimizations like constant propagation.
+
+GuardUtils.cpp: Provides helper functions to handle guards, which are conditions that protect critical sections of code, ensuring optimizations don’t break safety checks.
+
+HelloWorld.cpp: A simple example pass in LLVM that demonstrates how to write a basic transformation, often used as a template for learning.
+
+InjectTLIMappings.cpp: Injects mappings for Target Library Information (TLI), providing the optimizer with details about target-specific functions like memcpy and sin for better optimization decisions.
+
+InlineFunction.cpp: Implements function inlining, a core optimization that replaces a function call with the function’s body, reducing the overhead of the call and enabling further optimizations.
+
+InstructionNamer.cpp: Assigns names to unnamed LLVM instructions, which is useful for debugging and understanding LLVM IR, as many instructions don’t have explicit names.
+
+IntegerDivision.cpp: Contains optimizations for integer division, replacing slow division operations with faster alternatives like multiplication by reciprocals when possible.
+
+LCSSA.cpp: Implements Loop-Closed SSA (LCSSA), a form of Static Single Assignment (SSA) that ensures variables defined inside a loop are not used outside of it without appropriate φ nodes, making further loop optimizations safer.
+
+LibCallsShrinkWrap.cpp: Optimizes library calls by minimizing their overhead, often by moving them outside loops or conditional blocks where possible.
+
+Local.cpp: Implements various local optimizations that simplify individual functions without requiring global context, such as removing unused variables or simplifying arithmetic expressions.
+
+LoopConstrainer.cpp: Analyzes and constrains loops, transforming them for better performance, often by adding restrictions that make them easier to optimize.
+
+LoopPeel.cpp: Implements loop peeling, which involves peeling off one or more iterations of a loop to simplify the loop’s structure or enable further optimizations like vectorization.
+
+LoopRotationUtils.cpp: Provides utilities for rotating loops, moving the loop condition to the end, which can simplify control flow and improve the efficiency of subsequent optimizations.
+
+LoopSimplify.cpp: Transforms loops into a simplified form that makes them easier to analyze and optimize, often by adding preheader and exit blocks.
+
+LoopUnroll.cpp: Implements loop unrolling, duplicating the loop body multiple times to reduce loop overhead and improve instruction-level parallelism.
+
+LoopUnrollAndJam.cpp: Combines loop unrolling with loop jamming, which merges adjacent loops to improve cache locality and reduce overhead.
+
+LoopUnrollRuntime.cpp: Unrolls loops where the number of iterations is known only at runtime, applying optimizations to reduce the loop’s overhead dynamically.
+
+LoopUtils.cpp: Provides general utilities for manipulating loops in LLVM, used by various loop transformation passes.
+
+LoopVersioning.cpp: Implements loop versioning, which creates multiple versions of a loop to optimize for different runtime conditions, enabling better performance for specific cases.
+
+LowerAtomic.cpp: Lowers atomic operations into simpler, more efficient forms for better hardware compatibility and performance.
+
+LowerGlobalDtors.cpp: Lowers global destructors, simplifying their management at runtime and improving efficiency during program termination.
+
+LowerIFunc.cpp: Lowers indirect function calls, replacing them with more direct forms to improve performance and enable better optimization.
+
+LowerInvoke.cpp: Lowers invoke instructions, which are used for exception handling, into simpler constructs, reducing the overhead of exceptions.
+
+LowerMemIntrinsics.cpp: Lowers memory intrinsics like memcpy and memset into simpler loops or inline code, making them more efficient and easier to optimize.
+
+LowerSwitch.cpp: Lowers switch statements into a series of conditional branches, simplifying control flow and enabling better optimization.
+
+MatrixUtils.cpp: Provides utilities for handling matrix operations, used in high-performance computing and machine learning optimizations.
+
+Mem2Reg.cpp: Implements the promotion of memory-based variables to registers, converting stack allocations to SSA form, which simplifies code and enables further optimizations.
+
+MemoryOpRemark.cpp: Provides detailed information about memory operations, especially for debugging and performance tuning, identifying potential bottlenecks in memory access.
+
+MemoryTaggingSupport.cpp: Supports memory tagging, which is used to detect memory safety violations like out-of-bounds access by tagging memory regions.
+
+MetaRenamer.cpp: Renames all metadata in a module, typically for obfuscation or debugging, ensuring that the original names do not interfere with transformations.
+
+MisExpect.cpp: Provides support for the __builtin_expect intrinsic, which helps the optimizer make better predictions about branch behavior, improving runtime performance.
+
+ModuleUtils.cpp: Contains general utilities for manipulating LLVM modules, including adding or removing global variables, functions, and metadata.
+
+MoveAutoInit.cpp: This pass moves memory initialization instructions (auto-init) to the dominator of their users to reduce redundant initializations. This optimization improves memory access patterns and reduces unnecessary initialization code.
+
+NameAnonGlobals.cpp: Assigns names to previously unnamed global variables. This is useful for debugging and linking, where unnamed globals can cause issues.
+
+PredicateInfo.cpp: Tracks predicate-based control flow, which helps LLVM optimize branches by understanding relationships between conditions and their outcomes.
+
+PromoteMemoryToRegister.cpp: Implements "mem2reg," which promotes memory-resident variables to SSA registers, simplifying the code and enabling further optimizations.
+
+RelLookupTableConverter.cpp: Converts relocation lookup tables into a more efficient form, improving runtime dynamic relocations by optimizing how tables are used.
+
+SampleProfileInference.cpp: Fills in missing profiling data based on available runtime execution profiles, improving profile-guided optimizations.
+
+SampleProfileLoaderBaseUtil.cpp: Contains utilities for loading sample profiles, helping to apply runtime data to guide optimization processes.
+
+SanitizerStats.cpp: Collects runtime statistics for various sanitizers like AddressSanitizer and MemorySanitizer, aiding in tracking issues like memory corruption.
+
+ScalarEvolutionExpander.cpp: Expands scalar evolution (loop iteration) expressions into LLVM IR, converting abstract loop behavior into executable code.
+
+SCCPSolver.cpp: Implements Sparse Conditional Constant Propagation (SCCP), which tracks constants across branches and eliminates unnecessary computations.
+
+SimplifyCFG.cpp: Simplifies the control flow graph (CFG) by optimizing conditionals and removing unnecessary branches, making the code easier to optimize.
+
+SimplifyIndVar.cpp: Simplifies induction variables in loops to make loop transformations more effective, such as reducing unnecessary loop iteration variables.
+
+SimplifyLibCalls.cpp: Optimizes library calls by replacing expensive functions with simpler alternatives when specific conditions are met.
+
+SizeOpts.cpp: Implements optimizations to reduce the binary size, focusing on minimizing code where space is prioritized over speed.
+
+SplitModule.cpp: Splits an LLVM module into smaller sub-modules for parallel compilation or distribution, enabling more scalable build processes.
+
+SSAUpdater.cpp: Helps update SSA form when inserting or modifying code, particularly during transformations involving variable redefinitions.
+
+SSAUpdaterBulk.cpp: Provides a bulk version of SSAUpdater for handling multiple variables at once, improving efficiency in large-scale SSA updates.
+
+StripGCRelocates.cpp: Removes garbage collection (GC) relocation instructions when they are no longer needed, cleaning up the IR after certain transformations.
+
+StripNonLineTableDebugInfo.cpp: Strips debug information that is not related to line tables, which reduces the size of debug information while retaining critical details.
+
+SymbolRewriter.cpp: Rewrites symbols during transformations, particularly when renaming or changing variable references across different parts of the program.
+
+UnifyFunctionExitNodes.cpp: Ensures each function has a single exit point, simplifying control flow and making optimizations more effective.
+
+UnifyLoopExits.cpp: Ensures that loops have a single exit point, simplifying loop optimizations by reducing control flow complexity.
+
+Utils.cpp: A utility file that provides helper functions widely used across various LLVM transformations and optimizations.
+
+ValueMapper.cpp: Maps values between different versions of functions or modules, particularly useful when cloning or inlining functions.
+
+VNCoercion.cpp: Implements value numbering coercion, identifying equivalent computations to eliminate redundancy.
+
+LoadStoreVectorizer.cpp: Vectorizes load and store operations by combining multiple memory accesses into a single vector operation, improving memory bandwidth.
+
+LoopIdiomVectorize.cpp: Detects loop idioms (like memset or memcpy) and replaces them with more efficient vectorized versions.
+
+LoopVectorizationLegality.cpp: Determines whether a loop can be vectorized, analyzing dependencies and loop behavior to decide if vectorization is safe.
+
+LoopVectorize.cpp: Performs loop vectorization, which transforms loops into a form that can take advantage of SIMD (Single Instruction, Multiple Data) instructions.
+
+SLPVectorizer.cpp: Implements Superword Level Parallelism (SLP) vectorization, which merges independent scalar operations into vector operations.
+
+VectorCombine.cpp: Simplifies and merges vector operations, optimizing vector-based code for better performance.
+
+Vectorize.cpp: Provides general vectorization utilities and transformations for improving parallel execution.
+
+VPlan.cpp: Defines the Vectorization Plan (VPlan), an intermediate representation used to model and plan how loops should be vectorized.
+
+VPlanAnalysis.cpp: Analyzes VPlans to check their validity and optimize their structure for better performance during vectorization.
+
+VPlanHCFGBuilder.cpp: Builds a hierarchical control flow graph (HCFG) for use in VPlan, structuring complex loops for efficient vectorization.
+
+VPlanRecipes.cpp: Contains predefined strategies for transforming scalar loops into vectorized loops, guiding the vectorization process.
+
+VPlanSLP.cpp: Integrates Superword Level Parallelism (SLP) within VPlan, enabling efficient vectorization at the loop level.
+
+VPlanTransforms.cpp: Applies transformations to vectorization plans to improve their efficiency and compatibility with hardware constraints.
+
+VPlanVerifier.cpp: Verifies the correctness and efficiency of vectorization plans, ensuring they conform to optimization goals.
+
+AbstractCallSite.cpp: This file defines the AbstractCallSite class, which serves as a unified interface for handling different types of call sites, including direct, indirect, and callback calls. It simplifies how LLVM analyzes and transforms call sites by providing a standard way to represent and process them, particularly in optimizations like argument promotion and constant propagation.
+
+AsmWriter.cpp: Responsible for converting LLVM intermediate representation (IR) back into assembly code. This file handles the logic for outputting the textual assembly version of LLVM IR, facilitating debugging and cross-compilation tasks.
+
+Assumptions.cpp: Implements utilities to manage llvm.assume instructions, which provide hints to the compiler about assumed conditions. These assumptions can guide the optimizer in safely eliminating redundant branches or simplifying code.
+
+
+Attributes.cpp: Implements functions for manipulating attributes within LLVM. Attributes help guide the optimization process by conveying additional information about functions and instructions (such as whether a function is pure or if it has no side effects).
+
+AutoUpgrade.cpp: Handles the upgrading of older LLVM IR constructs to newer versions. As LLVM evolves, certain IR constructs become deprecated, and this file ensures compatibility by automatically upgrading them during compilation.
+
+BasicBlock.cpp: Provides functionality for manipulating basic blocks in LLVM IR. A basic block is a sequence of instructions without any jumps or branches, and this file allows for the creation, modification, and optimization of these blocks within a function.
+
+BuiltinGCs.cpp: Contains definitions for built-in garbage collection strategies. LLVM can target various garbage collection strategies for different languages, and this file provides the infrastructure for those.
+
+Comdat.cpp: Implements support for COMDAT sections, which allow functions and global variables to be defined in multiple object files without causing duplication. This is particularly important for linking and ensuring that only one instance of certain symbols exists.
+
+ConstantFold.cpp: Contains the logic for constant folding, an optimization that simplifies constant expressions at compile time rather than runtime. This pass evaluates constant expressions and replaces them with their results.
+ConstantRange.cpp: This file defines the ConstantRange class, which represents a range of values and supports operations like addition, subtraction, and intersection between ranges. It is used for value range analysis, such as determining ranges of possible values for variables in LLVM IR during optimizations.
+
+ConstantRangeList.cpp: This file implements the ConstantRangeList class, a list of non-overlapping, ordered constant ranges. It supports union and intersection operations, helping to handle multiple ranges more efficiently.
+
+Constants.cpp: This file manages LLVM constants, which are values that remain fixed during program execution. It defines various utility functions to handle constant expressions, ensuring that immutable values are correctly represented throughout optimizations.
+
+
+ConvergenceVerifier.cpp: This file is responsible for verifying the correctness of convergence constructs in the control flow. It ensures that certain control structures, such as loops, converge in a well-defined manner during execution.
+
+Core.cpp: Implements core functionalities and foundational utilities used throughout the compiler infrastructure, including basic utilities for managing IR (Intermediate Representation) and handling data structures like maps and sets.
+
+CycleInfo.cpp: This file deals with the analysis of cycles in a control flow graph. It provides functionalities to detect and handle cycles, which is important in optimizing loops and recursive functions.
+
+DataLayout.cpp: Manages data layout information, describing how data is laid out in memory. It helps the compiler generate efficient code by optimizing memory alignment, size, and access patterns based on the target architecture.
+
+DebugInfo.cpp: Contains functionalities for managing debugging information. It ensures that sufficient metadata is preserved during optimizations to allow for accurate source-level debugging.
+
+DebugInfoMetadata.cpp: Handles metadata related to debugging, including mappings between source code and generated code, allowing developers to step through source code during debugging while tracking the corresponding machine code.
+
+DebugLoc.cpp: Deals with managing location information in the source code, mapping source lines to instructions in the compiled code. This file ensures that during debugging, correct line numbers are displayed.
+
+DebugProgramInstruction.cpp: Focuses on handling debug instructions in the program. These instructions provide crucial hints for debuggers on how to step through and inspect variables during execution.
+
+DiagnosticHandler.cpp: Implements diagnostic handling, which provides detailed feedback during the compilation process, including warnings and errors. It helps developers identify and fix issues in their code.
+
+DiagnosticInfo.cpp: Defines various diagnostic information structures, providing a way to classify and handle different types of diagnostics, such as optimization remarks, errors, and warnings.
+
+DiagnosticPrinter.cpp: Handles the printing of diagnostic information. This file ensures that all diagnostic messages are presented clearly to developers during compilation, helping with debugging and optimization.
+
+DIBuilder.cpp: Manages the creation of debugging information during code generation. It constructs the necessary metadata for source-level debugging, enabling tools to provide rich debugging experiences.
+
+DIExpressionOptimizer.cpp: Optimizes expressions in debugging information to minimize the overhead of debugging data while preserving essential details for effective debugging.
+
+Dominators.cpp: Implements the dominator tree algorithm, which is used in optimizing compilers to understand control flow. It helps identify blocks of code that must execute before others, aiding various optimizations.
+
+EHPersonalities.cpp: Contains functions related to exception handling personalities, defining how the program should handle different types of exceptions at runtime.
+
+FPEnv.cpp: Deals with the floating-point environment and implements functionalities for managing floating-point operations and exceptions, ensuring compliance with target architecture specifications.
+
+Function.cpp: Implements the Function class, representing a function in the intermediate representation. It provides utilities for managing function properties, such as arguments, return types, and calling conventions.
+
+GCStrategy.cpp: Defines garbage collection strategies, which determine how memory management is handled in the generated code, especially in languages with automatic memory management.
+
+Globals.cpp: Manages global variables in the intermediate representation, ensuring that global variables are correctly initialized, used, and optimized during code generation.
+
+GVMaterializer.cpp: Implements functionality for materializing global variables, ensuring that globals are correctly initialized and loaded into memory when needed during execution.
+
+InlineAsm.cpp: Manages inline assembly within the intermediate representation, allowing developers to embed low-level assembly instructions directly within higher-level code.
+
+Instruction.cpp: Implements the base class for all instructions in the intermediate representation. This file provides methods for managing instruction types, operands, and various attributes.
+
+Instructions.cpp: Contains definitions for various specific instructions in the intermediate representation, such as binary operations, memory access instructions, and control flow instructions.
+
+IntrinsicInst.cpp: Defines classes for handling intrinsic instructions, which are special functions provided by the compiler that map directly to low-level operations, like CPU-specific instructions.
+
+IRBuilder.cpp: Implements the IRBuilder class, which is used to create and manipulate instructions in the intermediate representation. It simplifies the process of generating LLVM IR programmatically.
+
+IRPrintingPasses.cpp: Implements passes that print the intermediate representation to various outputs, such as files or console, for inspection and debugging of the IR during compilation.
+
+LegacyPassManager.cpp: Manages the execution of optimization passes over the intermediate representation. This file contains the infrastructure for scheduling and running various optimization and analysis passes.
+
+LLVMContext.cpp: Defines the LLVMContext class, which manages global data used throughout the LLVM IR. It is responsible for keeping track of types, constants, and other global IR structures.
+
+LLVMContextImpl.cpp/h: Implements and defines additional internal functionality for the LLVMContext, managing internal structures and providing support for multithreading.
+
+LLVMRemarkStreamer.cpp: Implements the streaming of optimization remarks, providing a way to generate and stream detailed feedback about optimizations during compilation.
+
+Mangler.cpp: Implements name mangling, which encodes additional information into symbol names to handle language-specific features like overloading and namespaces.
+
+MDBuilder.cpp: Provides utilities for building metadata nodes, which are used to store extra information in the IR that doesn’t affect program execution, such as debugging and optimization hints.
+
+MemoryModelRelaxationAnnotations.cpp: Handles annotations related to memory model relaxations, allowing the compiler to adjust memory access behavior in a way that optimizes performance while respecting memory consistency models.
+
+Metadata.cpp: Manages metadata in the intermediate representation, ensuring that additional information like debugging data, optimization hints, and annotations are properly handled.
+
+
+Module.cpp: Implements the Module class, representing a complete unit of code in the IR. It provides functionality for managing functions, global variables, and other top-level elements.
+
+ModuleSummaryIndex.cpp: Implements the module summary index, which helps in optimizing and linking multiple modules by providing a summary of the module’s contents, such as function definitions and global variables.
+
+Operator.cpp: Defines classes for handling LLVM operators, which are used in various instructions to perform operations like addition, subtraction, and comparison.
+
+OptBisect.cpp: Implements optimization bisection, a tool that allows developers to selectively enable or disable optimizations to isolate issues during debugging.
+
+Pass.cpp: Implements the base class for optimization and analysis passes, which transform or analyze the intermediate representation to improve performance or code quality.
+
+PassInstrumentation.cpp: Provides support for pass instrumentation, which tracks the performance and behavior of passes during their execution, helping in debugging and optimizing the pass pipeline.
+
+PassManager.cpp: Implements the pass manager, responsible for scheduling and running optimization passes on the intermediate representation.
+
+PassRegistry.cpp: Manages the registration of passes, allowing them to be discovered and invoked by the pass manager during the optimization pipeline.
+
+PassTimingInfo.cpp: Tracks the execution time of passes, helping developers identify bottlenecks in the optimization process.
+
+PrintPasses.cpp: Implements utilities for printing information about passes, including their names and the order in which they are executed.
+
+ProfDataUtils.cpp: Implements utilities for handling profile data, which is used to guide optimizations based on runtime behavior.
+
+ProfileSummary.cpp: Manages profile summaries, which aggregate profile data into a summary that can be used to make optimization decisions.
+
+PseudoProbe.cpp: Implements support for pseudo-probes, which are used to track execution information without inserting actual instructions into the code, reducing the overhead of profiling.
+
+ReplaceConstant.cpp: Provides utilities for replacing constants in the intermediate representation, helping in optimizations that involve constant folding or propagation.
+
+RuntimeLibcalls.cpp: Manages runtime library calls, which provide low-level operations like memory management and I/O during execution.
+
+SafepointIRVerifier.cpp: Verifies the correctness of safepoints in the IR, ensuring that garbage collection and other runtime services can interact safely with the program’s execution.
+
+SSAContext.cpp: Manages the context for handling Static Single Assignment (SSA) form, ensuring that variables are correctly handled in this form, which is used to simplify data flow analysis.
+
+Statepoint.cpp: Handles the insertion and management of statepoints, which are used to implement precise garbage collection and other runtime58. StructuralHash.cpp: Implements algorithms for computing structural hashes of LLVM IR constructs, enabling efficient comparison and identification of code similarities or differences.
+
+
+Type.cpp: Manages types in the intermediate representation, providing functions to define and query various data types, including integers, floats, and pointers, used in LLVM IR.
+
+TypedPointerType.cpp: Implements the handling of typed pointers, which are pointers with specific type information that help ensure correctness in memory access and manipulation.
+TypeFinder.cpp: Implements a utility that finds all types used in a module. This is useful for optimizations that need to analyze or manipulate types globally within a program.
+
+Use.cpp: Manages the Use class, which tracks how values are used in the program. This file provides essential mechanisms for dependency tracking between instructions and values.
+
+User.cpp: Implements the User class, which represents entities in the intermediate representation that use other values. It provides methods for managing the operands of instructions and other constructs.
+
+Value.cpp: Manages the Value class, the base class for all values computed by LLVM instructions. This file defines key methods for querying and manipulating values in the intermediate representation.
+
+ValueSymbolTable.cpp: Implements a symbol table for tracking values in a module, ensuring efficient lookup and management of variable and function names.
+
+VectorBuilder.cpp: Provides utilities for building vector instructions, enabling the generation of vectorized code, which is essential for SIMD (Single Instruction, Multiple Data) optimizations.
+
+Verifier.cpp: Implements the verifier, which checks the correctness of LLVM IR, ensuring that it adheres to the required invariants before further processing or execution.
+
+VFABIDemangler.cpp: Handles the demangling of vector function ABI (Application Binary Interface) names, translating mangled names back into a human-readable form for debugging and analysis.
+
+VFABIDemangler.cpp: This file deals with demangling vector function names that conform to a specific ABI (Application Binary Interface) for vector functions. It includes utilities to parse and interpret the mangled names, extracting details like vectorization factors, argument types, and ISA (Instruction Set Architecture) features. This helps the compiler handle vectorized function calls based on the ABI for different platforms.
+
+X86ArgumentStackSlotRebase.cpp: This file adjusts stack slots for X86 functions, typically in scenarios where stack-based arguments need to be relocated or rebased. It ensures correct handling of function arguments passed on the stack in X86 calling conventions.
+
+X86AsmPrinter.cpp: Implements functionality for printing X86 assembly code during the compilation process. It converts the intermediate representation (IR) to X86 assembly instructions, handling platform-specific quirks in instruction encoding and formatting.
+
+X86AvoidStoreForwardingBlocks.cpp: This file implements a pass to avoid performance penalties due to store-forwarding blocks on X86 architectures. It restructures code to avoid conflicts between store and load operations that could lead to delays in execution.
+
+X86AvoidTrailingCall.cpp: This file addresses optimization strategies to avoid performance issues caused by trailing calls. It detects and rearranges call instructions at the end of blocks to prevent stalls and ensure better instruction pipelining.
+
+X86CallFrameOptimization.cpp: Implements optimizations related to call frame management in X86 functions, particularly focusing on minimizing overhead related to stack frame setup and teardown during function calls.
+
+X86CallingConv.cpp: Contains logic for handling the X86 calling convention, ensuring that function arguments are passed in the correct registers or stack locations according to platform-specific rules.
+
+X86CmovConversion.cpp: This pass converts certain control flow operations into conditional moves (cmov instructions) in X86 code to optimize performance by reducing branching.
+
+X86CodeGenPassBuilder.cpp: This file manages the construction and configuration of code generation passes specifically for X86 targets, determining which optimizations should be applied during code generation.
+
+X86CompressEVEX.cpp: This file focuses on compressing EVEX-encoded instructions in X86 assembly, optimizing instruction size without affecting program behavior. EVEX encoding is used for certain vector instructions in modern X86 processors.
+
+X86DiscriminateMemOps.cpp: Implements a pass to handle discrimination of memory operations in X86, ensuring that load and store instructions are correctly managed for performance and correctness.
+
+X86DomainReassignment.cpp: This file performs domain reassignment for instructions in X86, optimizing instruction scheduling by moving instructions between different execution domains (e.g., integer vs. floating-point domains).
+
+X86DynAllocaExpander.cpp: This file handles the expansion of dynamic stack allocation instructions (alloca) on X86, ensuring proper memory management and stack frame adjustments during runtime.
+
+X86ExpandPseudo.cpp: Manages the expansion of pseudo-instructions into real X86 instructions during the final stages of code generation. Pseudo-instructions are placeholders that need to be translated into valid machine instructions.
+
+X86FastISel.cpp: Implements fast instruction selection for X86, which is a lightweight, fast code generation mechanism that skips some of the more expensive optimizations to quickly generate executable code.
+
+X86FastPreTileConfig.cpp: Provides optimizations related to fast pre-configuration of tiled architectures in X86, helping to prepare the processor for efficient tile-based execution.
+
+X86FastTileConfig.cpp: Similar to the previous file, this one handles fast configuration of tiled execution units in X86 processors, enabling optimized execution of matrix and vector operations.
+
+X86FixupBWInsts.cpp: This pass fixes issues related to byte and word-sized instructions in X86, ensuring that such instructions are correctly handled and optimized for better performance.
+
+X86FixupInstTuning.cpp: Optimizes instruction selection and tuning for specific X86 processor models, adjusting instructions to better match the characteristics of the underlying hardware.
+
+X86FixupLEAs.cpp: This optimization adjusts the use of LEA (Load Effective Address) instructions in X86, which are often used for address calculations, to improve performance.
+
+X86FixupSetCC.cpp: This pass adjusts the use of setcc instructions, which set a value based on the condition codes, to ensure they are used optimally in X86 code.
+
+X86FixupVectorConstants.cpp: Handles the optimization of vector constants in X86, ensuring that constants used in vector operations are loaded and used efficiently.
+
+X86FlagsCopyLowering.cpp: Lowers copies of flag registers in X86, ensuring that status flags (used for condition codes) are copied and managed correctly across different instructions.
+
+X86FloatingPoint.cpp: Deals with floating-point operations in X86, ensuring that floating-point instructions are correctly generated and optimized for accuracy and performance.
+
+X86FrameLowering.cpp: Implements frame lowering, which involves setting up and tearing down the stack frame for functions in X86 code, ensuring proper management of local variables and function calls.
+
+X86IndirectBranchTracking.cpp: Adds support for indirect branch tracking, a security feature that helps protect against certain types of exploits by tracking indirect branches in X86 code.
+
+X86IndirectThunks.cpp: Provides support for indirect thunks, which are small pieces of code that help manage indirect function calls in X86 code, often used to improve security or handle dynamic linking.
