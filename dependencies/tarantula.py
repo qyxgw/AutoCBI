@@ -10,7 +10,7 @@ for gcc_revision in gcc_revisions:
     result={}
     bugid = gcc_revision.split(",")[0]
 
-    # os.chdir('/data01/qiyixian/AutoCBI/gccPass-r/1/' + bugid + '/passcov')
+    # os.chdir('/data01/xxxxx/AutoCBI/gccPass-r/1/' + bugid + '/passcov')
     # maxnum = len(os.listdir())
 
     os.chdir('/data/AutoCBI/llvm/llvmInfo/' + bugid + '/fail')
@@ -98,7 +98,7 @@ for gcc_revision in gcc_revisions:
     loop=50
     for key in sorted_dict:
         loop -= 1
-        f.write(key+'\n')
+        f.write(key.split('CMakeFiles')[0]+key.split('.dir/')[1] + '\n')
         if loop <= 0:
             break
 
