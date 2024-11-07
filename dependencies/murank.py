@@ -87,7 +87,7 @@ for gcc_revision in gcc_revisions:
     gcccountold=gcccount.copy()
     print(gcccountold['gcc/tree-ssa-threadupdate.c'])
 
-    os.chdir('/data01/qiyixian/AutoCBI/gccPass-r0828/1/'+bugid+'/passcov')
+    os.chdir('/data01/xxxx/AutoCBI/gccPass-r0828/1/'+bugid+'/passcov')
     filenames = os.listdir()
     for filename in filenames:
         print(filename)
@@ -102,7 +102,7 @@ for gcc_revision in gcc_revisions:
                    if gccfilename in gcccount:
                        gcccount[gccfilename]-=1
 
-        os.chdir('/data01/qiyixian/AutoCBI/gccPass-r0828/1/'+bugid+'/passcov')
+        os.chdir('/data01/xxxx/AutoCBI/gccPass-r0828/1/'+bugid+'/passcov')
     # for key in gcccount:
     #     if gcccount[key]>=0:
     #        gcccount[key] = gcccount[key]/gcccountold[key]
